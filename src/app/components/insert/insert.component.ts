@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Student } from 'src/app/model/student';
 import { DataService } from 'src/app/services/data.service';
+import { RedditService } from 'src/app/services/reddit.service';
 
 @Component({
   selector: 'app-insert',
@@ -17,7 +18,10 @@ export class InsertComponent {
     imageUrl: '',
   }
 
-  constructor(private dataServ: DataService){}
+  constructor(private dataServ: DataService, private reddit: RedditService){
+
+    reddit.getPosts().then(posts => console.log(posts));
+  }
 
   saveStudent(){
     this.dataServ.addStudent({...this.newStudent});
